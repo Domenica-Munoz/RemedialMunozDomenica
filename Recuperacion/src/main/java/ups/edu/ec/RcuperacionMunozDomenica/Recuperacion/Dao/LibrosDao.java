@@ -2,17 +2,20 @@ package ups.edu.ec.RcuperacionMunozDomenica.Recuperacion.Dao;
 
 import java.util.List;
 
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import ec.ups.edu.app.g2.cooperativaUnion.EN.PolizaPres;
+
 import ups.edu.ec.RcuperacionMunozDomenica.Recuperacion.util.Libros;
 
+@Stateless
 public class LibrosDao {
 	
 	@Inject
 	EntityManager em;
+	
 	
 	
 	public void insertar(Libros libro) {
@@ -36,12 +39,11 @@ public class LibrosDao {
 }
  
  public List<Libros>mostrar(){
-	 
 	 String jpql = "select cre from PolizaPres cre";
 		Query query = em.createQuery(jpql, Libros.class);
 		List<Libros> libros= query.getResultList();
 		for (Libros libro : libros ) {
-			
+			libro.getCategoria();
 		}
 		return libros;
 	
